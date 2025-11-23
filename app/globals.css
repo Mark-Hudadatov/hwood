@@ -1,0 +1,108 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* RTL-specific resets and utilities */
+@layer base {
+  * {
+    @apply antialiased;
+  }
+
+  html {
+    @apply scroll-smooth;
+  }
+
+  body {
+    @apply bg-background text-dark;
+  }
+
+  /* RTL text alignment */
+  [dir='rtl'] {
+    text-align: right;
+  }
+
+  /* Fix number rendering in RTL */
+  [dir='rtl'] input[type='number'],
+  [dir='rtl'] input[type='tel'] {
+    direction: ltr;
+    text-align: left;
+  }
+}
+
+@layer components {
+  /* Section container utility */
+  .section-container {
+    @apply mx-auto max-w-7xl px-4 sm:px-6 lg:px-8;
+  }
+
+  /* Card base style */
+  .card {
+    @apply rounded-2xl bg-white p-6 shadow-soft transition-all duration-300;
+  }
+
+  .card:hover {
+    @apply shadow-hover;
+  }
+
+  /* Button base styles */
+  .btn {
+    @apply inline-flex items-center justify-center rounded-xl px-6 py-3 font-medium transition-all duration-300;
+  }
+
+  .btn-primary {
+    @apply bg-accent text-dark hover:bg-accent/90 hover:shadow-hover;
+  }
+
+  .btn-secondary {
+    @apply border-2 border-primary bg-transparent text-dark hover:bg-primary/10;
+  }
+
+  /* Link hover effect */
+  .link {
+    @apply transition-colors duration-200 hover:text-accent;
+  }
+}
+
+@layer utilities {
+  /* RTL flip utility for icons */
+  [dir='rtl'] .flip-rtl {
+    transform: scaleX(-1);
+  }
+
+  /* Gradient overlays */
+  .gradient-overlay {
+    @apply relative;
+  }
+
+  .gradient-overlay::before {
+    content: '';
+    @apply absolute inset-0 bg-gradient-to-t from-dark/60 to-transparent;
+  }
+
+  /* Text balance for headings */
+  .text-balance {
+    text-wrap: balance;
+  }
+}
+
+/* Custom scrollbar for webkit browsers */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-background;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-muted/30 rounded-full;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  @apply bg-muted/50;
+}
+
+/* Focus visible styles for accessibility */
+:focus-visible {
+  @apply outline-2 outline-offset-2 outline-accent;
+}
